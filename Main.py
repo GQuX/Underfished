@@ -82,7 +82,7 @@ class Fisherman:
 			Ki = 0.0015,
 			Kd = 0.0001,
 			setpoint = 0 )
-	
+		
 	def Locate(self) -> str | int:
 		position = self.roblox.Dimensions()
 		screenshot = Screenshot((position.x + RANGE[0], position.y + RANGE[1],
@@ -122,7 +122,7 @@ class Fisherman:
 		try:
 			while True:
 				status, difference = self.Locate()
-				control = max(0.1, self.pid(difference))
+				control = 0.33 #min(1, max(0.1, self.pid(difference)))
 				print(f"{self.iteration} | {status} | {difference}px ({control}s)")
 				self.iteration += 1
 
