@@ -1,7 +1,6 @@
 from desktopmagic.screengrab_win32 import getRectAsImage as Screenshot
 from ahk._sync.window import Window
 from ahk import AHK; ahk = AHK()
-from simple_pid import PID
 from time import sleep
 from PIL import Image
 from os import path
@@ -49,8 +48,8 @@ class Roblox:
 	def Center(self):
 		dimensions = self.dimensions()
 		return {
-			'x': int(dimensions.width  / 2),
-			'y': int(dimensions.height / 2) }
+			'X': int(dimensions.width  / 2),
+			'Y': int(dimensions.height / 2) }
 		
 	def Fullscreen(self):
 		fullscreen = self.window.get_position().y == 0
@@ -77,11 +76,6 @@ class Fisherman:
 	def __init__(self):
 		self.roblox = Roblox()
 		self.iteration = 0
-		self.pid = PID(
-			Kp = 0.0015,
-			Ki = 0.0015,
-			Kd = 0.0001,
-			setpoint = 0 )
 		
 	def Locate(self) -> str | int:
 		position = self.roblox.Dimensions()
@@ -110,19 +104,13 @@ class Fisherman:
 		elif fish > bar:										status = "Release"
 		elif fish > bar - THRESHOLD and fish < bar + THRESHOLD:	status = "Centered"
 
-		#if status == "No Bar":
-		#	img_fullscreen = Screenshot((position.x,        position.y, 
-		#								 position.x + 1920, position.y + 1080 ))
-		#	img_fullscreen.save(path.join(SCREENSHOT_PATH, f"{self.iteration}_full.png"), "png")
-		#	img.save(path.join(SCREENSHOT_PATH, f"{self.iteration}_{status}.png"), "png")
-
 		return status, difference
 	
 	def Start(self):
 		try:
 			while True:
 				status, difference = self.Locate()
-				control = 0.33 #min(1, max(0.1, self.pid(difference)))
+				control = 0.33
 				print(f"{self.iteration} | {status} | {difference}px ({control}s)")
 				self.iteration += 1
 
