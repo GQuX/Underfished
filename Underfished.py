@@ -1,7 +1,7 @@
 #>- Settings -------------------------------------------------------------------------
 
 UPDATE_TIME		 = 0.2 # Seconds
-CENTER_THRESHOLD = 60 # Pixels
+CENTER_THRESHOLD = 30 # Pixels
 SCREENSHOT_RANGE = (915, 270,
 					916, 824) # Pixel Range (X1, Y1, X2, Y2)
 
