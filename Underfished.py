@@ -7,6 +7,7 @@ SCREENSHOT_RANGE = (915, 270,
 
 #>- Dependencies ---------------------------------------------------------------------
 
+# pip install Pillow desktopmagic ahk pywin32
 from desktopmagic.screengrab_win32 import getRectAsImage as Screenshot
 from ahk._sync.window import Window
 from ahk import AHK; ahk = AHK()
